@@ -14,6 +14,7 @@ export class PushService {
   public messages: OSNotificationPayload[] = [];
   public pushListener: EventEmitter<OSNotificationPayload> =
     new EventEmitter<OSNotificationPayload>();
+  public userId: string;
   private _storage: Storage;
 
   constructor(private oneSignal: OneSignal, private storage: Storage) {
@@ -44,13 +45,22 @@ export class PushService {
         // do something when a notification is opened
         await this.notificationRecived(noti.notification);
       });
-
+    // Obtener ID de subscriptor
+    this.oneSignal.getIds().then((info) => {
+      this.userId = info.userId;
+    });
     this.oneSignal.endInit();
   }
 
   public async getMessages() {
     await this.loadMessages();
     return [...this.messages];
+  }
+
+  public async deleteMessages() {
+    await this.storage.clear();
+    this.messages = [];
+    this.loadMessages();
   }
 
   private async init() {

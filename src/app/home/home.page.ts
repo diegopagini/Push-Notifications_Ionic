@@ -13,7 +13,7 @@ export class HomePage implements OnInit, OnDestroy {
   public messages: OSNotificationPayload[] = [];
   private unsubscribe$: Subject<void> = new Subject<void>();
   constructor(
-    private pushService: PushService,
+    public pushService: PushService,
     private applicationRef: ApplicationRef
   ) {}
 
@@ -29,6 +29,11 @@ export class HomePage implements OnInit, OnDestroy {
 
   async ionViewWillEnter() {
     this.messages = await this.pushService.getMessages();
+  }
+
+  public async deleteMessages() {
+    await this.pushService.deleteMessages();
+    this.messages = [];
   }
 
   ngOnDestroy(): void {
