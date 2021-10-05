@@ -9,7 +9,7 @@
     <ion-list-header>
       <ion-label>Messages:</ion-label>
     </ion-list-header>
-    <ion-item *ngFor="let push of pushService.messages">
+    <ion-item *ngFor="let push of messages">
       <ion-label>
         <h3>{{push.title | uppercase}}</h3>
         <p>{{push.body}}</p>
