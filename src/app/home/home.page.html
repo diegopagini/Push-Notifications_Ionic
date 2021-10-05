@@ -1,7 +1,20 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar>
-    <ion-title> Blank </ion-title>
+    <ion-title> PushApp </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true"> </ion-content>
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Messages:</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let push of pushService.messages">
+      <ion-label>
+        <h3>{{push.title | uppercase}}</h3>
+        <p>{{push.body}}</p>
+        <p>{{push.additionalData | json}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

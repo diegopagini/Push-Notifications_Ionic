@@ -27,6 +27,8 @@
     "@ionic-native/core": "^5.36.0",
     "@ionic-native/onesignal": "^5.36.0",
     "@ionic/angular": "^5.5.2",
+    "@ionic/storage": "^3.0.6",
+    "@ionic/storage-angular": "^3.0.6",
     "onesignal-cordova-plugin": "^3.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
